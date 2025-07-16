@@ -22,6 +22,15 @@ exports.UserLogin = async (req, res) => {
     res.status(200).json(result);
 }
 
+exports.UserLogout = async (req, res) => {
+    //Update cookie
+    let CookieOptions = {expires:new Date(Date.now()-24*6060*1000), httpOnly:false, credentials:true}
+    res.cookie('token', "", CookieOptions)
+
+    //final result
+    res.status(200).json({status:"success", data: "Logout Successfully"});
+}
+
 exports.UserDetails = async (req, res) => {
     let result = await UserDetailsService(req);
     res.status(200).json(result);
