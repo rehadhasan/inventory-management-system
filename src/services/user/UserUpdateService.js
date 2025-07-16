@@ -1,7 +1,9 @@
-const UserCreateService = async (req,res)=>{
+const UserModel = require("../../models/UserModel");
+
+const UserUpdateService = async (req)=>{
     try{
         //Database Query
-        let email = req.headers['email'];
+        let email = req.headers.email;
         let postBody = req.body;
 
         //Database Action
@@ -13,4 +15,4 @@ const UserCreateService = async (req,res)=>{
     }
 }
 
-module.exports = UserCreateService;
+module.exports = UserUpdateService;

@@ -1,3 +1,5 @@
+const OTPModel = require("../../models/OTPModel");
+
 const OTPVerifyService = async (req,res)=>{
     try{
         //Database Query
@@ -8,11 +10,11 @@ const OTPVerifyService = async (req,res)=>{
 
         //Database Action
         let data = await OTPModel.findOne({email:email, otp:OTPCode, status:status}).countDocuments();
-        if(data.length > 0){
+        if(data === 1){
             //1st Operation
-            let OTPSend = await OTPModel.updateOne({email:email, otp:OTPCode, status:status}, {email:email, otp:OTPCode, status: statusUpdate});
+            let OTPUpdate = await OTPModel.updateOne({email:email, otp:OTPCode, status:status}, {$set: {email:email, otp:OTPCode, status: statusUpdate}}, {upsert:true});
 
-            return {status: "success", data: OTPSend};
+            return {status: "success", data: "OTP Verify Successfully"};
         }else{
             return {status: "fail", data: "Invalid OTP Code"};
         }

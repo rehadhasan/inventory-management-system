@@ -1,21 +1,25 @@
 const {EncodeToken} = require("../../utility/TokenHelper");
+const UserModel = require("../../models/UserModel");
 
-const UserLoginService = async (req,res)=>{
+const UserLoginService = async (req)=>{
     try{
         //Database Query
         let reqBody = req.body;
+        let email = reqBody.email;
+        let password = reqBody.password;
 
         //Database Query
-        let match = {$match: reqBody};
-        let data = await UserModel.aggregate([match])
+        let data = await UserModel.findOne({email:email, password:password}).countDocuments();
 
-        if(data.length > 0){
+        if(data === 1){
             //Encode Token
-            let token = await EncodeToken({email:data.email}, {userID: data.userID});
+            let userID = await UserModel.findOne({email:email}).select('_id');
+            let token = await EncodeToken(email, userID);
+            let userDetails = await UserModel.findOne({email:email});
 
-            return {status: "success", token: token, data: data};
+            return {status: "success", token: token, data: userDetails};
         }else{
-            return {status: "unauthorized"};
+            return {status: "fail", data: "No User Found"};
         }
     }catch (e) {
         return {status: "fail", data: e.toString()}

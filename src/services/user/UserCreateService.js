@@ -1,4 +1,6 @@
-const UserCreateService = async (req,res)=>{
+const UserModel = require("../../models/UserModel");
+
+const UserCreateService = async (req)=>{
     try{
         //Database Query
         let reqBody = req.body;
