@@ -4,6 +4,7 @@ const UserController = require('../controllers/users/UserController');
 const BrandController = require('../controllers/brands/BrandController');
 const CategoryController = require('../controllers/categories/CategoryController');
 const SupplierController = require('../controllers/suppliers/SupplierController');
+const CustomerController = require('../controllers/customers/CustomerController');
 const AuthVerifyMiddleware = require('../middlewares/AuthVerifyMiddleware');
 
 //User API
@@ -33,6 +34,12 @@ router.post("/CreateSupplier", AuthVerifyMiddleware, SupplierController.CreateSu
 router.post("/UpdateSupplier/:ID", AuthVerifyMiddleware, SupplierController.UpdateSupplier);
 router.get("/SupplierList/:pageNo/:perPage/:searchKeyword", AuthVerifyMiddleware, SupplierController.SupplierList);
 router.get("/SupplierDropDown", AuthVerifyMiddleware, SupplierController.SupplierDropDown);
+
+//Customer API
+router.post("/CreateCustomer", AuthVerifyMiddleware, CustomerController.CreateCustomer);
+router.post("/UpdateCustomer/:ID", AuthVerifyMiddleware, CustomerController.UpdateCustomer);
+router.get("/CustomerList/:pageNo/:perPage/:searchKeyword", AuthVerifyMiddleware, CustomerController.CustomerList);
+router.get("/CustomerDropDown", AuthVerifyMiddleware, CustomerController.CustomerDropDown);
 
 module.exports = router;
 
