@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const DataSchema = mongoose.Schema({
     userEmail: {type: String, required: true},
-    categoryName: {type: String, required: true}
+    categoryName: {type: String, required: true, unique: true}
 },{
     timestamps: true,
     versionKey: false

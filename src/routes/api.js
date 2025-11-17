@@ -3,6 +3,7 @@ const router = express.Router();
 const UserController = require('../controllers/users/UserController');
 const BrandController = require('../controllers/brands/BrandController');
 const CategoryController = require('../controllers/categories/CategoryController');
+const SupplierController = require('../controllers/suppliers/SupplierController');
 const AuthVerifyMiddleware = require('../middlewares/AuthVerifyMiddleware');
 
 //User API
@@ -26,6 +27,12 @@ router.post("/CreateCategory", AuthVerifyMiddleware, CategoryController.CreateCa
 router.post("/UpdateCategory/:ID", AuthVerifyMiddleware, CategoryController.UpdateCategory);
 router.get("/CategoryList/:pageNo/:perPage/:searchKeyword", AuthVerifyMiddleware, CategoryController.CategoryList);
 router.get("/CategoryDropDown", AuthVerifyMiddleware, CategoryController.CategoryDropDown);
+
+//Supplier API
+router.post("/CreateSupplier", AuthVerifyMiddleware, SupplierController.CreateSupplier);
+router.post("/UpdateSupplier/:ID", AuthVerifyMiddleware, SupplierController.UpdateSupplier);
+router.get("/SupplierList/:pageNo/:perPage/:searchKeyword", AuthVerifyMiddleware, SupplierController.SupplierList);
+router.get("/SupplierDropDown", AuthVerifyMiddleware, SupplierController.SupplierDropDown);
 
 module.exports = router;
 
