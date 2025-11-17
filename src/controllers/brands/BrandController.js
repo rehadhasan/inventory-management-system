@@ -1,5 +1,5 @@
-const CreateService = require("../../services/common/CreateService");
 const BrandModel = require("../../models/brands/BrandModel");
+const CreateService = require("../../services/common/CreateService");
 const UpdateService = require("../../services/common/UpdateService");
 const ListService = require("../../services/common/ListService");
 const DropDownService = require("../../services/common/DropDownService");
