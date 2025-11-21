@@ -8,6 +8,6 @@ const DataSchema = mongoose.Schema({
     versionKey: false
 })
 
-const ExpenseTypesModel = mongoose.model('expenseType', DataSchema);
+const ExpenseTypesModel = mongoose.model('expensetypes', DataSchema);
 
 module.exports = ExpenseTypesModel;

@@ -5,6 +5,8 @@ const BrandController = require('../controllers/brands/BrandController');
 const CategoryController = require('../controllers/categories/CategoryController');
 const SupplierController = require('../controllers/suppliers/SupplierController');
 const CustomerController = require('../controllers/customers/CustomerController');
+const ExpenseTypesController = require('../controllers/expense/ExpenseTypesController');
+const ExpenseController = require('../controllers/expense/ExpenseController');
 const AuthVerifyMiddleware = require('../middlewares/AuthVerifyMiddleware');
 
 //User API
@@ -40,6 +42,17 @@ router.post("/CreateCustomer", AuthVerifyMiddleware, CustomerController.CreateCu
 router.post("/UpdateCustomer/:ID", AuthVerifyMiddleware, CustomerController.UpdateCustomer);
 router.get("/CustomerList/:pageNo/:perPage/:searchKeyword", AuthVerifyMiddleware, CustomerController.CustomerList);
 router.get("/CustomerDropDown", AuthVerifyMiddleware, CustomerController.CustomerDropDown);
+
+//Expense Type API
+router.post("/CreateExpenseType", AuthVerifyMiddleware, ExpenseTypesController.CreateExpenseType);
+router.post("/UpdateExpenseType/:ID", AuthVerifyMiddleware, ExpenseTypesController.UpdateExpenseType);
+router.get("/ExpenseTypeList/:pageNo/:perPage/:searchKeyword", AuthVerifyMiddleware, ExpenseTypesController.ExpenseTypeList);
+router.get("/ExpenseTypeDropDown", AuthVerifyMiddleware, ExpenseTypesController.ExpenseTypeDropDown);
+
+//Expense API
+router.post("/CreateExpense", AuthVerifyMiddleware, ExpenseController.CreateExpense);
+router.post("/UpdateExpense/:ID", AuthVerifyMiddleware, ExpenseController.UpdateExpense);
+router.get("/ExpenseList/:pageNo/:perPage/:searchKeyword", AuthVerifyMiddleware, ExpenseController.ExpenseList);
 
 module.exports = router;
 
